@@ -1,43 +1,19 @@
 #include "Link.h"
 
-void Link::crMi()
+Link::Link() : 
+	_kinematicPair{ kinematicPair::INDEFINED },
+	_axisRotation{ axisRotation::INDEFINED },
+	_systemStartNextLink(3, 0),
+	_rotationMatrixM(4, std::vector<double>(4, 0)),
+	_mhct(4, std::vector<double>(4, 0))
 {
-	for (int i = 0; i < rotationMatrixM.size(); i++)
-		for (int j = 0; j < rotationMatrixM[i].size(); j++)
-			rotationMatrixM[i][j] = 0;
-
-	for (int i = 0; i < rotationMatrixM.size(); i++)
-		rotationMatrixM[i][i] = 1;
-
-	for (int i = 0; i < rotationMatrixM.size(); i++)
-		for (int j = 0; j < rotationMatrixM[i].size(); j++)
-			_mhct[i][j] = rotationMatrixM[i][j];
-}
-
-Link::Link()
-{
-	rotationMatrixM.resize(3);
-	for (int i = 0; i < rotationMatrixM.size(); i++)
-		rotationMatrixM[i].resize(3);
-
-	systemStartNextLink.resize(3);
-
-	_mhct.resize(4);
-	for (int i = 0; i < _mhct.size(); i++)
-		_mhct[i].resize(4);
-
-
-	crMi();
 }
 
 void Link::setSystemStartNextLink(const double X, const double Y, const double Z)
 {
-	systemStartNextLink[0] = X;
-	systemStartNextLink[1] = Y;
-	systemStartNextLink[2] = Z;
-
-	for (int i = 0; i < systemStartNextLink.size(); i++)
-		_mhct[i][3] = systemStartNextLink[i];
+	_systemStartNextLink[0] = X;
+	_systemStartNextLink[1] = Y;
+	_systemStartNextLink[2] = Z;
 }
 
 void Link::setKinematicPair(kinematicPair _kinematicPair)
@@ -45,6 +21,7 @@ void Link::setKinematicPair(kinematicPair _kinematicPair)
 	this->_kinematicPair = _kinematicPair;
 }
 
-void Link::setAxisRotation()
+void Link::setAxisRotation(axisRotation _axisRotation)
 {
+	this->_axisRotation = _axisRotation;
 }

@@ -4,54 +4,47 @@
 //¬иды кинематических пар
 enum class kinematicPair
 {
+	INDEFINED,
 	SPHERICAL,
 	ROTATIONAL,
-	TRANSLATIONAL,
-	INDEFINED
+	TRANSLATIONAL
 };
 
 //ќсь вращени€
 enum class axisRotation
 {
+	INDEFINED,
 	AXIS_X,
 	AXIS_Y,
-	AXIS_Z,
-	INDEFINED
+	AXIS_Z
 };
 
 class Link
 {
 public:
-	//¬се функции в данном разделе временное решение, в скоре будет изменнно!!!
-	//All functions in this section are a temporary solution, will be changed soon!!!!
-	void crMi();
-
-public:
 	Link();
+
 	void setSystemStartNextLink(const double X, const double Y, const double Z);
 	void setKinematicPair(kinematicPair _kinematicPair);
-
-
-private:
-	void setAxisRotation();
+	void setAxisRotation(axisRotation _axisRotation);
 
 private:
-	//матрица поворота Mi {3x3}
-	//rotation matrix Mi {3x3}
-	std::vector<std::vector<double>> rotationMatrixM;
-
-	//координаты начала системы следующего звена S -> S' {3}
-	//coordinates of the system origin of the next link S->S' {3}
-	//[0]=X [1]=Y [2]=Z
-	std::vector<double> systemStartNextLink;
-
 	// инематическа€ пара
 	//Kinematic pair
-	kinematicPair _kinematicPair = kinematicPair::INDEFINED;
+	kinematicPair _kinematicPair;
 
 	//ќсь вращени€
 	//Rotational axis
 	axisRotation _axisRotation = axisRotation::INDEFINED;
+
+	//координаты начала системы следующего звена S -> S' {3}
+	//coordinates of the system origin of the next link S->S' {3}
+	//[0]=X [1]=Y [2]=Z
+	std::vector<double> _systemStartNextLink;
+
+	//матрица поворота Mi {3x3}
+	//rotation matrix Mi {3x3}
+	std::vector<std::vector<double>> _rotationMatrixM;
 
 	//ћатрица преобразовани€ однородных координат
 	//Homogeneous coordinate transformation matrix (mhct)

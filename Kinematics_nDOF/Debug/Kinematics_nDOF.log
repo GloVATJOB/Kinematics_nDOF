@@ -1,12 +1,2 @@
-﻿  Link.cpp
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(5,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(6,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(9,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(12,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(13,21): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(20,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(26,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(39,20): warning C4018: <: несоответствие типов со знаком и без знака
-  Source.cpp
-  Создание кода...
+﻿  Source.cpp
   Kinematics_nDOF.vcxproj -> C:\Users\selyu\source\repos\Kinematics_nDOF\Debug\Kinematics_nDOF.exe
