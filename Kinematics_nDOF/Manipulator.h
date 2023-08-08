@@ -22,5 +22,6 @@ private:
 	//Звенья манипулятора
 	//Manipulator links
 	std::vector<Link> _links;
+
 };
 

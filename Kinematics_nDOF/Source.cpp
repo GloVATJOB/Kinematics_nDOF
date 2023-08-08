@@ -7,20 +7,25 @@ int main()
 
 	Manipulator scara;
 
-	scara.setCountLink(3);
+	scara.setCountLink(4);
 
 	scara.getLink(0).setKinematicPair(kinematicPair::ROTATIONAL);
-	scara.getLink(1).setKinematicPair(kinematicPair::TRANSLATIONAL);
+	scara.getLink(1).setKinematicPair(kinematicPair::SPHERICAL);
 	scara.getLink(2).setKinematicPair(kinematicPair::SPHERICAL);
+	scara.getLink(3).setKinematicPair(kinematicPair::ROTATIONAL);
 
 	scara.getLink(0).setAxisRotation(axisRotation::AXIS_Y);
-	scara.getLink(1).setAxisRotation(axisRotation::AXIS_Y);
-	scara.getLink(2).setAxisRotation(axisRotation::AXIS_Y);
+	scara.getLink(1).setAxisRotation(axisRotation::AXIS_Z);
+	scara.getLink(2).setAxisRotation(axisRotation::AXIS_Z);
+	scara.getLink(3).setAxisRotation(axisRotation::AXIS_X);
 
-	scara.getLink(0).setSystemStartNextLink(0, 0, 40);
-	scara.getLink(1).setSystemStartNextLink(20, 0, 400);
-	scara.getLink(2).setSystemStartNextLink(300, 0, -60);
+	scara.getLink(0).setSystemStartNextLink(0, 0, 80);
+	scara.getLink(1).setSystemStartNextLink(0, 0, 70);
+	scara.getLink(2).setSystemStartNextLink(50, 0, 0);
+	scara.getLink(3).setSystemStartNextLink(30, 0, 0);
 
+	for (int i = 0; i < 4; i++)
+		scara.getLink(i).setLinkÑonfiguration({ {1,0,0}, {0,1,0}, {0,0,1} });
 
 	system("pause");
 	return 1;
