@@ -140,11 +140,15 @@
   <ItemGroup>
     <ClCompile Include="Link.cpp" />
     <ClCompile Include="Manipulator.cpp" />
+    <ClCompile Include="MatrixOperations.cpp" />
+    <ClCompile Include="RotationMatrix.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Link.h" />
     <ClInclude Include="Manipulator.h" />
+    <ClInclude Include="MatrixOperations.h" />
+    <ClInclude Include="RotationMatrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

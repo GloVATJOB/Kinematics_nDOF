@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Manipulator.h"
 
+
 int main()
 {
 	setlocale(LC_ALL, "ru");
@@ -26,6 +27,10 @@ int main()
 
 	for (int i = 0; i < 4; i++)
 		scara.getLink(i).setLinkÑonfiguration({ {1,0,0}, {0,1,0}, {0,0,1} });
+
+	scara.setAngleRotation({ 0,0,0,0 });
+
+	scara.calculationHCT();
 
 	system("pause");
 	return 1;
