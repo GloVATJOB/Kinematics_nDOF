@@ -5,20 +5,22 @@
 #include "RotationMatrix.h"
 #include "MatrixOperations.h"
 
+#define M_PI 3.14159265358979323846
+
 class Link : private RotationMatrix
 {
 public:
 	Link();
 
 	void setSystemStartNextLink(const double X, const double Y, const double Z);
-	void setKinematicPair(kinematicPair _kinematicPair);
-	void setAxisRotation(axisRotation _axisRotation);
-	void setLinkÑonfiguration(std::vector<std::vector<double>> _linkÑonfiguration);
-	void setAngleRotation(double _angleRotation);
+	void setKinematicPair(const kinematicPair _kinematicPair);
+	void setAxisRotation(const axisRotation _axisRotation);
+	void setLinkÑonfiguration(const std::vector<std::vector<double>> _linkÑonfiguration);
+	void setAngleRotation(const double _angleRotation);
 
-	void calculationRelativePosition();
+	void calculationRelativePosition();//ñäåëàòü íîğì ğåàëèçàöèş 
 
-	std::vector<std::vector<double>>& getRelativePosition();
+	std::vector<std::vector<double>>& getRelativePosition();//ñäåëàòü íîğì ğåàëèçàöèş 
 
 private:
 	void filling_mhct();
@@ -53,4 +55,3 @@ private:
 	//Angle of rotation of the link
 	double _angleRotation;
 };
-

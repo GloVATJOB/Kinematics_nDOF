@@ -32,6 +32,8 @@ int main()
 
 	scara.calculationHCT();
 
+	scara.printHCT();
+
 	system("pause");
 	return 1;
 }

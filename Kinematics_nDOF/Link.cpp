@@ -18,27 +18,27 @@ void Link::setSystemStartNextLink(const double X, const double Y, const double Z
 	filling_mhct();
 }
 
-void Link::setKinematicPair(kinematicPair _kinematicPair)
+void Link::setKinematicPair(const kinematicPair _kinematicPair)
 {
 	this->_kinematicPair = _kinematicPair;
 	definitionPair(_kinematicPair);
 }
 
-void Link::setAxisRotation(axisRotation _axisRotation)
+void Link::setAxisRotation(const axisRotation _axisRotation)
 {
 	this->_axisRotation = _axisRotation;
 	definitionRotationMatrix(_axisRotation);
 }
 
-void Link::setLink—onfiguration(std::vector<std::vector<double>> _rotationMatrixM)
+void Link::setLink—onfiguration(const std::vector<std::vector<double>> _rotationMatrixM)
 {
 	this->_link—onfiguration = _rotationMatrixM;
 	filling_mhct();
 }
 
-void Link::setAngleRotation(double _angleRotation)
+void Link::setAngleRotation(const double _angleRotation)
 {
-	this->_angleRotation = _angleRotation;
+	this->_angleRotation = _angleRotation * M_PI / 180;
 }
 
 void Link::calculationRelativePosition()

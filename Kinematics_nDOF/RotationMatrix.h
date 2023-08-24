@@ -22,18 +22,18 @@ enum class axisRotation
 
 class RotationMatrix
 {
-public:
+protected:
 	RotationMatrix();
-	void (RotationMatrix::*calculationRotationMatrix)(double _angleRotation) { nullptr };
-	void definitionRotationMatrix(axisRotation axis);
-	void definitionPair(kinematicPair pair);
+	void (RotationMatrix::*calculationRotationMatrix)(const double& _angleRotation) { nullptr };
+	void definitionRotationMatrix(const axisRotation& axis);
+	void definitionPair(const kinematicPair& pair);
 
 	std::vector<std::vector<double>>& getRotationMatrix();
 
 private:
-	void calculationRotationMatrixX(double _angleRotation);
-	void calculationRotationMatrixY(double _angleRotation);
-	void calculationRotationMatrixZ(double _angleRotation);
+	void calculationRotationMatrixX(const double& _angleRotation);
+	void calculationRotationMatrixY(const double& _angleRotation);
+	void calculationRotationMatrixZ(const double& _angleRotation);
 
 private:
 	//1 - кинематическая пара – вращательная
