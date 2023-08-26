@@ -2,56 +2,44 @@
 
 #include <vector>
 
+#include <corecrt_math_defines.h>
+
 #include "RotationMatrix.h"
 #include "MatrixOperations.h"
-
-#define M_PI 3.14159265358979323846
 
 class Link : private RotationMatrix
 {
 public:
 	Link();
-
-	void setSystemStartNextLink(const double X, const double Y, const double Z);
-	void setKinematicPair(const kinematicPair _kinematicPair);
-	void setAxisRotation(const axisRotation _axisRotation);
-	void setLinkСonfiguration(const std::vector<std::vector<double>> _linkСonfiguration);
+	
 	void setAngleRotation(const double _angleRotation);
+	void setAxisRotation(const axisRotation _axisRotation);
+	void setKinematicPair(const kinematicPair _kinematicPair);
+	void setStartСoordinates(const double X, const double Y, const double Z);
+	void setLinkConfiguration(const std::vector<std::vector<double>> _linkConfiguration);
 
-	void calculationRelativePosition();//сделать норм реализацию 
-
-	std::vector<std::vector<double>>& getRelativePosition();//сделать норм реализацию 
+	const double(&getRelativePosition())[4][4];
 
 private:
-	void filling_mhct();
+	void calculationRelativePosition();
 
 private:
-	//Кинематическая пара
-	//Kinematic pair
 	kinematicPair _kinematicPair;
-
-	//Ось вращения
-	//Rotational axis
 	axisRotation _axisRotation;
 
-	//координаты начала системы следующего звена S -> S' {3}
-	//coordinates of the system origin of the next link S->S' {3}
+	//coordinates of the beginning of the link relative to the previous link
 	//[0]=X [1]=Y [2]=Z
-	std::vector<double> _systemStartNextLink;
+	double _startСoordinates[3]{ 0,0,0 };
 
-	//конфигурация звена системы Mi {3x3}
 	//system link configuration Mi {3x3}
-	std::vector<std::vector<double>> _linkСonfiguration;
+	double _linkConfiguration[3][3]{};
 
-	//Матрица преобразования однородных координат S -> S'
-	//Homogeneous coordinate transformation matrix (mhct) S -> S'
-	std::vector<std::vector<double>> _mhct;
-
-	//Матрица относительного положения двух соседних звеньев
-	//Relative position matrix of two neighboring links
-	std::vector<std::vector<double>> _relativePosition;
-
-	//Угол поворота звена
 	//Angle of rotation of the link
 	double _angleRotation;
+
+	//Homogeneous coordinate transformation matrix (mhct) S -> S'
+	double _mhct[4][4]{};
+
+	//Relative position matrix of two neighboring links
+	double _relativePosition[4][4]{};
 };

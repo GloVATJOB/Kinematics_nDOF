@@ -24,26 +24,24 @@ class RotationMatrix
 {
 protected:
 	RotationMatrix();
-	void (RotationMatrix::*calculationRotationMatrix)(const double& _angleRotation) { nullptr };
+	void (RotationMatrix::* calculationRotationMatrix)(const double& _angleRotation) { nullptr };
 	void definitionRotationMatrix(const axisRotation& axis);
 	void definitionPair(const kinematicPair& pair);
 
-	std::vector<std::vector<double>>& getRotationMatrix();
+	const double(&getRotationMatrix())[4][4];
 
 private:
 	void calculationRotationMatrixX(const double& _angleRotation);
 	void calculationRotationMatrixY(const double& _angleRotation);
 	void calculationRotationMatrixZ(const double& _angleRotation);
+	void calculationRotationMatrixD1(const double& _angleRotation);
 
 private:
-	//1 - кинематическа€ пара Ц вращательна€
-	//0 - кинематическа€ пара Ц поступательна€
 	//1 - kinematic pair - rotational
 	//0 - kinematic pair - translational
-	short int _pair;
+	long long _pair;
 
-	//ћатрица поворота в трЄхмерном пространстве
 	//Rotation matrix in three-dimensional space
-	std::vector<std::vector<double>> _rotationMatrix;
+	double _rotationMatrix[4][4]{};
 };
 

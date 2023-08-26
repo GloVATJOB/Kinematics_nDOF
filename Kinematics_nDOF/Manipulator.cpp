@@ -2,24 +2,20 @@
 
 Manipulator::Manipulator() :
 	_countLink{ 0 },
-	_links(_countLink),
-	_hct(4, std::vector<double>(4, 0)),
-	_mhct_0N(4, std::vector<double>(4, 0))
+	_links(_countLink) 
 {
-	for (int i = 0; i < 4; i++)
-		_mhct_0N[i][i] = 1;
 }
 
 void Manipulator::setCountLink(const unsigned short int _countLink)
 {
-	this->_countLink = _countLink;
+	this->_countLink = _countLink + 1;
 	_links.resize(this->_countLink);
 }
 
-void Manipulator::setAngleRotation(const std::vector<double> angles)
+void Manipulator::setAngleRotation(const std::vector<double> _angles)
 {
-	for (int i = 0; i < _countLink; i++)
-		_links[i].setAngleRotation(angles[i]);
+	for (int i = 0; i < _countLink - 1; i++)
+		_links[i].setAngleRotation(_angles[i]);
 }
 
 Link& Manipulator::getLink(const unsigned short int numberLink)
@@ -27,22 +23,20 @@ Link& Manipulator::getLink(const unsigned short int numberLink)
 	return _links[numberLink];
 }
 
-void Manipulator::calculationHCT()
+void Manipulator::calculationTCP()
 {
-	_hct = _links[0].getRelativePosition();
-	for (int i = 1; i < _countLink; i++)
-		_hct = multMatrix4x4(_hct, _links[i].getRelativePosition());
-}
+    double result[4][4] = {};
+    for (int i = 0; i < 4; ++i) 
+    {
+        result[i][i] = 1.0;
+    }
 
-#ifdef _TEST_
-void Manipulator::printHCT()
-{
-	for (int i = 0; i < _hct.size(); i++)
-	{
-		for (int j = 0; j < _hct[i].size(); j++)
-			std::cout << _hct[i][j] << "\t";
-		std::cout << "\n";
-	}
+    double temp[4][4] = {};
+    for (int i = 0; i < _countLink; i++)
+    {
+        multMatrix4x4(result, _links[i].getRelativePosition(), temp);
+        std::memcpy(result, temp, sizeof(double) * 4 * 4);
+    }
+    std::memcpy(_hct, result, sizeof(double) * 4 * 4);
 }
-#endif // _TEST_
 

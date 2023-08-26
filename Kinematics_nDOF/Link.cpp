@@ -1,22 +1,10 @@
 #include "Link.h"
 
 Link::Link() :
-	_kinematicPair{ kinematicPair::INDEFINED },
-	_axisRotation{ axisRotation::INDEFINED },
-	_angleRotation{ 0 },
-	_systemStartNextLink(3, 0),
-	_mhct(4, std::vector<double>(4, 0)),
-	_link—onfiguration(4, std::vector<double>(4, 0)),
-	_relativePosition(4, std::vector<double>(4, 0))
+	_kinematicPair(kinematicPair::INDEFINED),
+	_axisRotation(axisRotation::INDEFINED),
+	_angleRotation(0) 
 {}
-
-void Link::setSystemStartNextLink(const double X, const double Y, const double Z)
-{
-	_systemStartNextLink[0] = X;
-	_systemStartNextLink[1] = Y;
-	_systemStartNextLink[2] = Z;
-	filling_mhct();
-}
 
 void Link::setKinematicPair(const kinematicPair _kinematicPair)
 {
@@ -30,36 +18,39 @@ void Link::setAxisRotation(const axisRotation _axisRotation)
 	definitionRotationMatrix(_axisRotation);
 }
 
-void Link::setLink—onfiguration(const std::vector<std::vector<double>> _rotationMatrixM)
+void Link::setStart—oordinates(const double X, const double Y, const double Z)
 {
-	this->_link—onfiguration = _rotationMatrixM;
-	filling_mhct();
+	_start—oordinates[0] = X;
+	_start—oordinates[1] = Y;
+	_start—oordinates[2] = Z;
+
+	for (int i = 0; i < 3; i++)
+		_mhct[i][3] = _start—oordinates[i];
+}
+
+void Link::setLinkConfiguration(const std::vector<std::vector<double>> _linkConfiguration)
+{
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
+		{
+			this->_linkConfiguration[i][j] = _linkConfiguration[i][j];
+			_mhct[i][j] = this->_linkConfiguration[i][j];
+		}
+}
+
+const double(&Link::getRelativePosition())[4][4]
+{
+	return _relativePosition;
 }
 
 void Link::setAngleRotation(const double _angleRotation)
 {
 	this->_angleRotation = _angleRotation * M_PI / 180;
+	(this->*RotationMatrix::calculationRotationMatrix)(_angleRotation);
+	calculationRelativePosition();
 }
 
 void Link::calculationRelativePosition()
 {
-	(this->*calculationRotationMatrix)(_angleRotation);
 	multMatrix4x4(_mhct, getRotationMatrix(), _relativePosition);
-}
-
-std::vector<std::vector<double>>& Link::getRelativePosition()
-{
-	calculationRelativePosition();
-	return _relativePosition;
-}
-
-void Link::filling_mhct()
-{
-	for (int i = 0; i < _systemStartNextLink.size(); i++)
-		_mhct[i][3] = _systemStartNextLink[i];
-
-	for (int i = 0; i < _link—onfiguration.size(); i++)
-		for (int j = 0; j < _link—onfiguration[i].size(); j++)
-			_mhct[i][j] = _link—onfiguration[i][j];
-	_mhct[3][3] = 1;
 }

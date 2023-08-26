@@ -1,11 +1,2 @@
-﻿  Link.cpp
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(58,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(61,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Link.cpp(62,21): warning C4018: <: несоответствие типов со знаком и без знака
-  Manipulator.cpp
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Manipulator.cpp(40,20): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\selyu\source\repos\Kinematics_nDOF\Kinematics_nDOF\Manipulator.cpp(42,21): warning C4018: <: несоответствие типов со знаком и без знака
-  RotationMatrix.cpp
-  Source.cpp
-  Создание кода...
+﻿  Manipulator.cpp
   Kinematics_nDOF.vcxproj -> C:\Users\selyu\source\repos\Kinematics_nDOF\Debug\Kinematics_nDOF.exe
